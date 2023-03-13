@@ -1,10 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <Counter />
 </template>
+<script>
+
+
+import Counter from "../src/components/Counter.vue";
+
+export default {
+  components: { Counter },
+  name: "App",
+  Components: {
+    Counter,
+  },
+};
+</script>
 
 <style>
 #app {
