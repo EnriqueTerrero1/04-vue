@@ -3,7 +3,7 @@
 
   <!-- <h2>Direct access:{{$store.state.count}}</h2> -->
   <!-- <h2>Computed:{{countComputed}}</h2> -->
-
+   <h2>{{countComputed}}</h2>
   <h2>MapState:{{$store.state.counter.count}}</h2>
   <h2>Last Mutation:  {{lastMutation}}</h2>
 
@@ -11,7 +11,7 @@
   <button @click="incrementBy">+5</button>
   <button v-if="!isLoading" @click="incrementRandomInt">Random</button>
   
-  <h2>Direct getter : {{$store.getters.squareCount}}</h2>
+  <h2>Direct getter : {{$store.getters['counter/squareCount']}}</h2>
 
 </template>
 
@@ -28,20 +28,21 @@ data(){
 },
 methods:{
   increment(){
-      this.$store.commit('increment')
+      this.$store.commit('counter/increment')
   },
   incrementBy(){
     
  
-    this.$store.commit('incrementBy',5);
+    this.$store.commit('counter/incrementBy',5);
   },
  
-  ...mapActions(['incrementRandomInt'])
+  ...mapActions('counter',['incrementRandomInt'])
 },
 computed:{
   countComputed(){
     return this.$store.state.counter.count+1
-  },...mapState(['count','lastMutation','isLoading'])
+  },
+  ...mapState('counter',['count','lastMutation','isLoading'])
 }}
 
 
